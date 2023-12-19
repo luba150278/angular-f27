@@ -1,13 +1,61 @@
+<ng-template #temp1>
+  <div>Hello</div>
+</ng-template>
+
 <app-header></app-header>
 <main class="main">
   <div class="container">
-    <h1>{{ title }}</h1>
-    <p>{{ desc }}</p>
-    <h3>{{ getText() }}</h3>
-    <img src="/assets/images/bg.jpg" alt="Bill" width="200"/>
+    <div>
+      <ng-container *ngTemplateOutlet="temp1"></ng-container>
+    </div>
+
+    <ng-container *ngComponentOutlet="selectedComponent"></ng-container>
+
+    <h2>=============================================</h2>
+    <h1>{{ title | uppercase }}</h1>
+    <p [attr.id]="id">{{ desc | lowercase }}</p>
+    <img [attr.src]="src" alt=""/>
+
+    <p>{{ nowDate | date : "dd.MMM.yyyy" }}</p>
+
+    <p>{{ currencyVal | currency : "UAH" : "symbol-narrow" : "10.2-6" }}</p>
+
+    <p>{{ pi | number : "0.2-5" }}</p>
+    <p>{{ obj | json }}</p>
+
+    <h2 *ngIf="num >= 5">{{ num }}</h2>
+    <h3 *ngIf="num < 5">{{ num }}</h3>
+
+    <ul *ngIf="list.length > 0">
+      <li *ngFor="let item of list">{{ item }}</li>
+    </ul>
+
+    <div [ngSwitch]="name">
+      <p *ngSwitchCase="'Alina'">Alina</p>
+      <p *ngSwitchCase="'Daria'">Daria</p>
+      <p *ngSwitchCase="'Stas'">Stas</p>
+      <p *ngSwitchDefault>Anybody</p>
+    </div>
+
+    <p [ngClass]="{ first: accessToken, second: !accessToken }">
+      {{ accessToken ? "Auth" : "Not Auth" }}
+    </p>
+
+    <p [class]="{ first: accessToken, second: !accessToken }">
+      {{ accessToken ? "Auth" : "Not Auth" }}
+    </p>
+    <p *ngIf="accessToken">Auth</p>
+    <p
+      [ngStyle]="{
+        color: accessToken ? 'green' : 'red',
+        'font-weight': '700',
+        'font-size': '24px'
+      }"
+    >
+      LOREM
+    </p>
   </div>
 </main>
-<app-auth></app-auth>
 <app-footer></app-footer>
 
 <router-outlet></router-outlet>
