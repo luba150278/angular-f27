@@ -5,6 +5,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { AuthModule } from '../auth/auth.module';
 import { MyTemplateComponent } from './my-template/my-template.component';
+import { SvgComponent } from './svg/svg.component';
 
 @Component({
   selector: 'app-root',
@@ -17,11 +18,11 @@ import { MyTemplateComponent } from './my-template/my-template.component';
     HeaderComponent,
     FooterComponent,
     AuthModule,
-    MyTemplateComponent
+    MyTemplateComponent,
+    SvgComponent
   ],
 })
 export class AppComponent {
-
   title: string = 'angular-f27!!!';
   desc: string = 'lorem20 LOREM';
   nowDate: Date = new Date();
@@ -36,7 +37,7 @@ export class AppComponent {
   selectedComponent = MyTemplateComponent;
 
   id: number = 100;
-  src: string = '/images/bg.jpg'
+  src: string = '/assets/images/bg.jpg';
 
   getText(): string {
     return 'Hello, Angular';
