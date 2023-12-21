@@ -1,6 +1,6 @@
 main {
   padding: 40px 0;
-  background-color: #fff;
+  /* background-color: #fff; */
 }
 main[dataTheme="dark"] {
   background-color: aquamarine;
@@ -15,3 +15,4 @@ main[dataTheme="dark"] {
   font-size: 24px;
   font-weight: 700;
 }
+

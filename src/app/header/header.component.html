@@ -1,7 +1,14 @@
 <header [attr.dataTheme]="theme">
   <div class="container">
-    <h1>{{'Logo' | uppercase}}</h1>
+    <h1>{{ "Logo" | uppercase }}</h1>
     <!--<app-nav-menu></app-nav-menu>-->
-    <button (click)="changeTheme()">{{theme}}</button>
+    <div class="toogle">
+      <span>dark</span>
+      <mat-slide-toggle
+        (change)="changeTheme()"
+        [checked]="theme === 'light' ? true : false"
+      ></mat-slide-toggle>
+      <span>light</span>
+    </div>
   </div>
 </header>

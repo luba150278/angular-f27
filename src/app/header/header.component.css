@@ -5,6 +5,11 @@ header {
 header[dataTheme="dark"] {
   background-color: #00081f;
 }
-header[dataTheme="dark"] h1 {
+header[dataTheme="dark"] * {
   color: #fff;
+}
+.toogle{
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
