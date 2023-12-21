@@ -1,4 +1,4 @@
-import { Component, TemplateRef, ViewChild } from '@angular/core';
+import { Component, Input, TemplateRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
@@ -19,30 +19,19 @@ import { SvgComponent } from './svg/svg.component';
     FooterComponent,
     AuthModule,
     MyTemplateComponent,
-    SvgComponent
+    SvgComponent,
   ],
 })
 export class AppComponent {
-  title: string = 'angular-f27!!!';
-  desc: string = 'lorem20 LOREM';
-  nowDate: Date = new Date();
-  currencyVal: number = 1000.26689;
-  pi: number = Math.PI;
-  obj: Object = { name: 'Alina', age: 25 };
-  num: number = 6;
-  list: string[] = ['Alina', 'Daria', 'Artur', 'Viktor', 'Stas', 'Yuriy'];
-  name: string = 'Daria';
-  accessToken: string | null = null;
+  themeApp: string = 'light';
 
-  selectedComponent = MyTemplateComponent;
-
-  id: number = 100;
-  src: string = '/assets/images/bg.jpg';
-
-  getText(): string {
-    return 'Hello, Angular';
+  counter: number = 0;
+  changeCounter(e: Event): void {
+    console.log(e);
+    this.counter += 1;
   }
-  ngOnInit(): void {
-    this.accessToken = localStorage.getItem('accessToken') || null;
+
+  changeThemeApp(theme: string): void{
+    this.themeApp = theme;
   }
 }

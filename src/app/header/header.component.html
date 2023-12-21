@@ -1,6 +1,7 @@
-<header>
+<header [attr.dataTheme]="theme">
   <div class="container">
-    <h1>Logo</h1>
-    <app-nav-menu></app-nav-menu>
+    <h1>{{'Logo' | uppercase}}</h1>
+    <!--<app-nav-menu></app-nav-menu>-->
+    <button (click)="changeTheme()">{{theme}}</button>
   </div>
 </header>

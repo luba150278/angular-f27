@@ -4,8 +4,8 @@ import { Component } from '@angular/core';
   selector: 'app-auth',
   // standalone: true,
   // imports: [],
-  //templateUrl: './auth.component.html',
-  template: '<div class="container"><p>Auth</p></div>',
+  templateUrl: './auth.component.html',
+  //template: '<div class="container"><p>Auth</p></div>',
   //styleUrl: './auth.component.css'
 })
 export class AuthComponent {
