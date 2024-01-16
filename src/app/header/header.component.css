@@ -1,15 +1,6 @@
-header {
-  background-color: aquamarine;
-  padding: 20px 0;
+.menu a {
+  color: var(--link-menu);
 }
-header[dataTheme="dark"] {
-  background-color: #00081f;
-}
-header[dataTheme="dark"] * {
-  color: #fff;
-}
-.toogle{
-  display: flex;
-  align-items: center;
-  gap: 4px;
+.menu a.active-link {
+  color: red;
 }

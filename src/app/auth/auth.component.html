@@ -1,0 +1,44 @@
+<main>
+  <section>
+    <div class="container">
+      <h1>Логін</h1>
+      <form #loginForm="ngForm" (ngSubmit)="sumbitForm(loginForm)">
+        <input name="email" type="email" ngModel required />
+        <input
+          name="password"
+          ngModel
+          required
+          [type]="hide ? 'password' : 'text'"
+        />
+        <button (click)="hide = !hide">show password</button>
+        <button (click)="changeShowPass($event)">show password2</button>
+        <button type="submit">Send</button>
+      </form>
+      <h2>Реєстрація</h2>
+      <form #regForm="ngForm" (ngSubmit)="sumbitViewForm()">
+        <input name="email" type="email" ngModel required />
+        <input
+          name="password"
+          ngModel
+          required
+          [type]="hide ? 'password' : 'text'"
+        />
+        <button (click)="changeShowPass($event)">show password</button>
+        <button type="submit">Send</button>
+      </form>
+      <h2>Form Builder</h2>
+      <form [formGroup]="buildForm" (ngSubmit)="sumbitBuilderForm()">
+        <input formControlName="email" type="email" />
+        <input formControlName="password" [type]="hide ? 'password' : 'text'" />
+        <button type="submit">Send</button>
+      </form>
+
+      <h2>Reactive Form</h2>
+      <form [formGroup]="reactiveForm" (ngSubmit)="sumbitReactiveForm()">
+        <input formControlName="email" type="email" />
+        <input formControlName="password" [type]="hide ? 'password' : 'text'" />
+        <button type="submit">Send</button>
+      </form>
+    </div>
+  </section>
+</main>

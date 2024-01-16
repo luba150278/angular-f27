@@ -1,14 +1,22 @@
-<header [attr.dataTheme]="theme">
+<header>
   <div class="container">
-    <h1>{{ "Logo" | uppercase }}</h1>
-    <!--<app-nav-menu></app-nav-menu>-->
-    <div class="toogle">
-      <span>dark</span>
-      <mat-slide-toggle
-        (change)="changeTheme()"
-        [checked]="theme === 'light' ? true : false"
-      ></mat-slide-toggle>
-      <span>light</span>
-    </div>
+    <nav>
+      <ul class="menu d-flex gap-2">
+        <li>
+          <a
+            [routerLink]="''"
+            routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Головна</a
+          >
+        </li>
+        <li>
+          <a [routerLink]="'posts'" routerLinkActive="active-link">Пости</a>
+        </li>
+        <li>
+          <a [routerLink]="'auth'" routerLinkActive="active-link">Авторизація</a>
+        </li>
+      </ul>
+    </nav>
   </div>
 </header>
