@@ -11,6 +11,15 @@ footer {
   background-color: aquamarine;
   padding: 20px 40px;
 }
+
+header[theme='dark']{
+  background-color: black;
+  border-bottom: 1px solid #fff;
+}
+.wrap[theme='dark'] footer{
+  background-color: black;
+  border-top: 1px solid #fff;
+}
 section {
   padding: 60px 40px;
 }
@@ -29,6 +38,9 @@ a {
 .d-flex {
   display: flex;
   align-items: center;
+}
+.jcsb{
+  justify-content: space-between;
 }
 .gap-1 {
   gap: 16px;

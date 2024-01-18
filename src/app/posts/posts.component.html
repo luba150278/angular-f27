@@ -2,6 +2,12 @@
   <section>
     <div class="container">
       <h1>Сторінка з постами</h1>
+      <div class="grid">
+        <div *ngFor="let item of posts" class="item">
+          <h3>{{item.title}}</h3>
+          <p>{{item.body}}</p>
+        </div>
+      </div>
     </div>
   </section>
 </main>

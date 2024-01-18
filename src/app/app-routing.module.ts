@@ -12,6 +12,16 @@ const routes: Routes = [
   { path: 'post/:id', component: PostComponent },
   { path: '404', component: ErrorComponent },
   { path: 'auth', component: AuthComponent },
+  {
+    path: ':lang',
+    children: [
+      { path: '', component: HomeComponent },
+      { path: 'posts', component: PostsComponent },
+      { path: 'post/:id', component: PostComponent },
+      { path: '404', component: ErrorComponent },
+      { path: 'auth', component: AuthComponent },
+    ],
+  },
   { path: '**', redirectTo: '404' },
 ];
 

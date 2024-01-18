@@ -1,22 +1,25 @@
-<header>
+<header [attr.theme]="theme">
   <div class="container">
-    <nav>
-      <ul class="menu d-flex gap-2">
-        <li>
-          <a
-            [routerLink]="''"
-            routerLinkActive="active-link"
-            [routerLinkActiveOptions]="{ exact: true }"
-            >Головна</a
-          >
-        </li>
-        <li>
-          <a [routerLink]="'posts'" routerLinkActive="active-link">Пости</a>
-        </li>
-        <li>
-          <a [routerLink]="'auth'" routerLinkActive="active-link">Авторизація</a>
-        </li>
-      </ul>
-    </nav>
+    <div class="wrap gap-5">
+      <nav>
+        <ul class="menu d-flex gap-2">
+          <li *ngFor="let item of arr_links">
+            <a [routerLink]="item.link" routerLinkActive="active-link"
+              [routerLinkActiveOptions]="{ exact: true }">{{item.title}}</a>
+          </li>
+
+        </ul>
+      </nav>
+
+      <div class="d-flex gap-1 themes">
+        <p *ngFor="let item of header_langs" [ngClass]="{'active': lang === item}" (click)="changeLang(item)">
+          {{item}}</p>
+      </div>
+
+      <div class="d-flex gap-1 themes">
+        <p *ngFor="let item of header_themes" [ngClass]="{'active': theme === item}" (click)="changeTheme(item)">
+          {{item}}</p>
+      </div>
+    </div>
   </div>
 </header>
