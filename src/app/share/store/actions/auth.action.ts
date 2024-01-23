@@ -5,6 +5,9 @@ export const checkAuthAction = createAction(
   props<{ token: string; username: string, id: number }>()
 );
 
-export const loginAction = createAction('[Auth] login');
+export const loginAction = createAction(
+  '[Auth] login',
+  props<{ token: string; username: string; id: number }>()
+);
 
 export const logoutAction = createAction('[Auth] logout');

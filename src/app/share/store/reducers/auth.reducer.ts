@@ -1,19 +1,34 @@
 import { createReducer, on } from '@ngrx/store';
-import { checkAuthAction } from '../actions/auth.action';
+import { checkAuthAction, loginAction, logoutAction } from '../actions/auth.action';
 
-interface IUser{
+interface IUser {
+  isAuth: boolean;
   token: string;
   username: string;
-  userId: number;
+  id: number;
 }
 const initialState = {
+  isAuth: false,
   token: '',
   username: '',
-  userId: 0
-}
+  id: 0,
+};
 export const authReduser = createReducer(
   initialState,
-  on(checkAuthAction, (state, action): IUser  => {
-    return {...state, ...action}
+  on(checkAuthAction, (state, action): IUser => {
+    return { ...state, ...action };
+  }),
+  on(loginAction, (state, action): IUser => {
+    localStorage.setItem('token', action.token);
+    localStorage.setItem('username', action.username);
+    localStorage.setItem('id', action.id + '');
+    const isAuth = !!action.token;
+    return { ...state, ...action, isAuth };
+  }),
+  on(logoutAction, () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
+    localStorage.removeItem('id');
+    return initialState;
   })
 );

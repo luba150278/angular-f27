@@ -43,7 +43,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     ReactiveFormsModule,
     HttpClientModule,
     StoreModule.forRoot({ auth: authReduser }),
-    // StoreDevtoolsModule.instrument(),
+    StoreDevtoolsModule.instrument(),
   ],
   providers: [
     provideClientHydration(),

@@ -13,14 +13,37 @@ export class AuthService {
 
   getCurrentUser(): Observable<IFullUser | IError> {
     const url = URL + '/user';
-    // {
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //       Authorization: `token ${localStorage.getItem('token')}`,
-    //     },
-    //   }
     return this.http
       .get<IFullUser>(url, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `token ${localStorage.getItem('token')}`,
+        },
+      })
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          if (error.error instanceof ErrorEvent) {
+            // A client-side or network error occurred
+            console.error('An error occurred:', error.error.message);
+          } else {
+            // The backend returned an unsuccessful response code
+            // The response body may contain clues as to what went wrong
+            console.error(
+              `Backend returned code ${error.status}, body was:`,
+              error.error
+            );
+          }
+
+          // Return an observable with a user-facing error message
+          return of(error.error as IError);
+        })
+      );
+  }
+
+  login(email: string, password: string): Observable<IFullUser | IError> {
+    const url = URL + '/users/login';
+    return this.http
+      .post<IFullUser>(url, {user: {email, password}}, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: `token ${localStorage.getItem('token')}`,
