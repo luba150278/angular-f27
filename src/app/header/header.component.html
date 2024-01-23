@@ -13,7 +13,8 @@
 
       <div class="d-flex gap-1 themes">
         <button *ngIf="(isAuth | async)" (click)="logout()">Logout</button>
-        <a [routerLink]="'auth'" *ngIf="!(isAuth | async)">Login</a>
+        <a [routerLink]="'auth'" [routerLink]="'auth'" routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{ exact: true }" *ngIf="!(isAuth | async)">Login</a>
         <p *ngFor="let item of header_langs" [ngClass]="{'active': lang === item}" (click)="changeLang(item)">
           {{item}}</p>
       </div>
