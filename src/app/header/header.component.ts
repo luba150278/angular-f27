@@ -23,15 +23,15 @@ export class HeaderComponent {
   lang = 'uk';
 
   arr_links: ILink[] = [];
-  isAuth: Observable<boolean> = of(false);
+  isAuth: Observable<string> = of('');
   private langSubscription: Subscription;
 
   constructor(
     private themeService: ThemeService,
     private langService: LangService,
-    private store: Store<{ isAuth: boolean }>
+    private store: Store<{ auth: { token: string } }>
   ) {
-    this.isAuth = this.store.select('isAuth');
+    this.isAuth = this.store.select((state) => state.auth.token);
     this.theme = this.themeService.getTheme();
     this.langSubscription = this.langService.langChanged$.subscribe(
       (newLang) => {
@@ -43,7 +43,9 @@ export class HeaderComponent {
     );
   }
   ngOnInit() {
-
+    this.isAuth.subscribe((value) => {
+      console.log('isAuth value:', value);
+    });
   }
   changeTheme(newTheme: string) {
     this.themeService.setTheme(newTheme);
