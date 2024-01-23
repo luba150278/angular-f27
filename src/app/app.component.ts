@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular-rounting';
+  constructor(private authService: AuthService) {
+    if (typeof window !== 'undefined') {
+      const token = localStorage.getItem('token') || null;
+    }
+  }
 }

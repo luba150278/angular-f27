@@ -1,15 +1,20 @@
+export interface IAuthor{
+  id: number;
+  email: string;
+  username: string;
+}
+
 export interface IPost {
   id: number;
   title: string;
   body: string;
-  userId: number;
-  tags: string[];
-  reactions: number;
+  description: string;
+  tagList: string[];
+  author: IAuthor;
+
 }
 
 export interface IPosts {
-  posts: IPost[];
-  total: number;
-  limit: number;
-  skip: number;
+  articles: IPost[];
+  articlesCount: number;
 }

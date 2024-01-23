@@ -8,14 +8,14 @@ import { URL } from '../share/backend';
   providedIn: 'root',
 })
 export class PostService {
-  public posts: IPosts = { posts: [], total: 0, limit: 0, skip: 0 };
+  public posts: IPosts = { articles: [], articlesCount: 0 };
   constructor(private http: HttpClient) {
     this.getPosts().subscribe((data) => {
       this.posts = data;
-    })
+    });
   }
   getPosts(): Observable<IPosts> {
-    const url = URL + '/posts';
+    const url = URL + '/articles';
     return this.http.get<IPosts>(url);
   }
 }

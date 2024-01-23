@@ -12,8 +12,8 @@ export class PostsComponent {
   total: number = 0;
   constructor(private postService: PostService) {
     this.postService.getPosts().subscribe((data) => {
-      this.posts = data.posts;
-      this.total = data.total;
+      this.posts = data.articles;
+      this.total = data.articlesCount;
     });
   }
 }

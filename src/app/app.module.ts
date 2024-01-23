@@ -19,6 +19,10 @@ import { ThemeService } from './services/theme.service';
 import { LangService } from './services/lang.service';
 import { HttpClientModule } from '@angular/common/http';
 import { PostService } from './services/post.service';
+import { StoreModule } from '@ngrx/store';
+import { authReduser } from './share/store/reducers/auth.reducer';
+import { AuthService } from './services/auth.service';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -38,8 +42,16 @@ import { PostService } from './services/post.service';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    StoreModule.forRoot({ auth: authReduser }),
+    // StoreDevtoolsModule.instrument(),
   ],
-  providers: [provideClientHydration(), ThemeService, LangService, PostService],
+  providers: [
+    provideClientHydration(),
+    ThemeService,
+    LangService,
+    PostService,
+    AuthService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

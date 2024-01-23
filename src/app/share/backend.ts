@@ -1,1 +1,1 @@
-export const URL = 'https://dummyjson.com';
+export const URL = 'https://nest-try-app.onrender.com';

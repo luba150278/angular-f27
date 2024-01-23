@@ -12,11 +12,11 @@ footer {
   padding: 20px 40px;
 }
 
-header[theme='dark']{
+header[theme="dark"] {
   background-color: black;
   border-bottom: 1px solid #fff;
 }
-.wrap[theme='dark'] footer{
+.wrap[theme="dark"] footer {
   background-color: black;
   border-top: 1px solid #fff;
 }
@@ -35,11 +35,14 @@ ul {
 a {
   text-decoration: none;
 }
+.d-grid {
+  display: grid;
+}
 .d-flex {
   display: flex;
   align-items: center;
 }
-.jcsb{
+.jcsb {
   justify-content: space-between;
 }
 .gap-1 {
@@ -57,7 +60,7 @@ a {
 .gap-5 {
   gap: 64px;
 }
-main{
+main {
   min-height: 84vh;
 }
 app-layout {
