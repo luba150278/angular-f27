@@ -43,12 +43,16 @@ export class AuthService {
   login(email: string, password: string): Observable<IFullUser | IError> {
     const url = URL + '/users/login';
     return this.http
-      .post<IFullUser>(url, {user: {email, password}}, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `token ${localStorage.getItem('token')}`,
-        },
-      })
+      .post<IFullUser>(
+        url,
+        { user: { email, password } },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `token ${localStorage.getItem('token')}`,
+          },
+        }
+      )
       .pipe(
         catchError((error: HttpErrorResponse) => {
           if (error.error instanceof ErrorEvent) {
@@ -64,6 +68,38 @@ export class AuthService {
           }
 
           // Return an observable with a user-facing error message
+          return of(error.error as IError);
+        })
+      );
+  }
+
+  register(
+    username: string,
+    email: string,
+    password: string
+  ): Observable<IFullUser | IError> {
+    const url = URL + '/users';
+    return this.http
+      .post<IFullUser>(
+        url,
+        { user: { username, email, password } },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `token ${localStorage.getItem('token')}`,
+          },
+        }
+      )
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          if (error.error instanceof ErrorEvent) {
+            console.error('An error occurred:', error.error.message);
+          } else {
+            console.error(
+              `Backend returned code ${error.status}, body was:`,
+              error.error
+            );
+          }
           return of(error.error as IError);
         })
       );
