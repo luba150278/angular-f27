@@ -60,10 +60,32 @@ a {
 .gap-5 {
   gap: 64px;
 }
+.mb-4{
+  margin-bottom: 32px;
+}
 main {
   min-height: 84vh;
 }
 app-layout {
   display: grid;
   grid-template-rows: auto 0 1fr auto;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.btn{
+  padding: 6px;
+  border-radius: 6px;
+  color: var(--link-menu);
+  border: 1px solid var(--link-menu)
+}
+.btn:hover{
+  background-color: var(--link-menu);
+  color: #fff;
+}
+.error{
+  color: red;
+}
+h1{
+  margin-bottom: 0 !important;
 }

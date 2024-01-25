@@ -1,7 +1,12 @@
 <main>
   <section>
     <div class="container">
-      <h1>Сторінка з постами</h1>
+      <div class="d-flex gap-2 mb-4">
+        <h1>Сторінка з постами</h1>
+        <div class="icon d-flex" *ngIf="isAuth" (click)="createPost()">
+          <mat-icon class="mat-icon-rtl-mirror" fontIcon="post_add"></mat-icon>
+        </div>
+      </div>
       <div class="grid">
         <div *ngFor="let item of posts" class="item">
           <h3>{{item.title}}</h3>

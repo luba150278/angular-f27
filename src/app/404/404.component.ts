@@ -5,6 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './404.component.html',
   styleUrl: './404.component.css'
 })
-export class ErrorComponent {
+export class ErrorPageComponent {
 
 }

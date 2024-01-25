@@ -12,7 +12,7 @@ import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { PostsComponent } from './posts/posts.component';
 import { PostComponent } from './post/post.component';
-import { ErrorComponent } from './404/404.component';
+import { ErrorPageComponent } from './404/404.component';
 import { AuthComponent } from './auth/auth.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ThemeService } from './services/theme.service';
@@ -23,6 +23,15 @@ import { StoreModule } from '@ngrx/store';
 import { authReduser } from './share/store/reducers/auth.reducer';
 import { AuthService } from './services/auth.service';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { errorReducer } from './share/store/reducers/error.reducer';
+import { ErrorComponent } from './error/error.component';
+import { MatIconModule } from '@angular/material/icon';
+import { CreatePostComponent } from './create-post/create-post.component';
 
 @NgModule({
   declarations: [
@@ -33,8 +42,10 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     HomeComponent,
     PostsComponent,
     PostComponent,
-    ErrorComponent,
+    ErrorPageComponent,
     AuthComponent,
+    ErrorComponent,
+    CreatePostComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,8 +53,14 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    StoreModule.forRoot({ auth: authReduser }),
+    StoreModule.forRoot({ auth: authReduser, error: errorReducer }),
     StoreDevtoolsModule.instrument(),
+    BrowserAnimationsModule,
+    MatTabsModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatIconModule,
   ],
   providers: [
     provideClientHydration(),

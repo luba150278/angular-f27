@@ -12,9 +12,9 @@
       </nav>
 
       <div class="d-flex gap-1 themes">
-        <button *ngIf="(token | async) !== ''" (click)="logout()">Logout</button>
+        <button mat-raised-button color="primary" *ngIf="(token | async) !== ''" (click)="logout()">Logout</button>
         <a [routerLink]="'auth'" [routerLink]="'auth'" routerLinkActive="active-link"
-          [routerLinkActiveOptions]="{ exact: true }" *ngIf="(token | async)===''">Login</a>
+          [routerLinkActiveOptions]="{ exact: true }" *ngIf="(token | async)===''" class="btn">Login</a>
         <p *ngFor="let item of header_langs" [ngClass]="{'active': lang === item}" (click)="changeLang(item)">
           {{item}}</p>
       </div>
