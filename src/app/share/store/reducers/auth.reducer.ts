@@ -1,8 +1,8 @@
 import { createReducer, on } from '@ngrx/store';
 import {
   checkAuthAction,
-  loginAction,
   logoutAction,
+  setTokenAction,
 } from '../actions/auth.action';
 
 interface IUser {
@@ -20,7 +20,7 @@ export const authReduser = createReducer(
   on(checkAuthAction, (state, action): IUser => {
     return { ...state, ...action };
   }),
-  on(loginAction, (state, action): IUser => {
+  on(setTokenAction, (state, action): IUser => {
     localStorage.setItem('token', action.token);
     localStorage.setItem('username', action.username);
     localStorage.setItem('id', action.id + '');

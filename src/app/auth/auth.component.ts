@@ -8,7 +8,7 @@ import {
 } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Store } from '@ngrx/store';
-import { loginAction, logoutAction } from '../share/store/actions/auth.action';
+import { loginAction, logoutAction, registerAction } from '../share/store/actions/auth.action';
 import { Router } from '@angular/router';
 import { setErrorAction } from '../share/store/actions/error.action';
 import { Observable, of } from 'rxjs';
@@ -32,9 +32,7 @@ export class AuthComponent {
   });
 
   constructor(
-    private authService: AuthService,
     private store: Store,
-    private router: Router
   ) {}
 
   changeShowPass(event: Event): void {
@@ -44,22 +42,12 @@ export class AuthComponent {
 
   sumbitReactiveForm() {
     if (this.reactiveForm.status === 'VALID') {
-      this.authService
-        .login(this.reactiveForm.value.email, this.reactiveForm.value.password)
-        .subscribe((data) => {
-          if ('user' in data) {
-            const { token, username, id } = data.user;
-            this.store.dispatch(loginAction({ token, username, id }));
-            this.router.navigate(['/']);
-          } else {
-            this.store.dispatch(
-              setErrorAction({
-                message: data.message || '',
-                messages: data?.errors?.body || [],
-              })
-            );
-          }
-        });
+      this.store.dispatch(
+        loginAction({
+          email: this.reactiveForm.value.email,
+          password: this.reactiveForm.value.password,
+        })
+      );
     } else {
       this.store.dispatch(
         setErrorAction({
@@ -69,35 +57,24 @@ export class AuthComponent {
       );
     }
     setTimeout(() => {
-      this.store.dispatch(setErrorAction({
-        message: '',
-        messages: [],
-      }));
+      this.store.dispatch(
+        setErrorAction({
+          message: '',
+          messages: [],
+        })
+      );
     }, 5000);
   }
 
   sumbitRegForm() {
     if (this.regForm.status === 'VALID') {
-      this.authService
-        .register(
-          this.regForm.value.username,
-          this.regForm.value.email,
-          this.regForm.value.password
-        )
-        .subscribe((data) => {
-          if ('user' in data) {
-            const { token, username, id } = data.user;
-            this.store.dispatch(loginAction({ token, username, id }));
-            this.router.navigate(['/']);
-          } else {
-            this.store.dispatch(
-              setErrorAction({
-                message: data.message || '',
-                messages: data?.errors?.body || [],
-              })
-            );
-          }
-        });
+       this.store.dispatch(
+         registerAction({
+           username: this.regForm.value.username,
+           email: this.regForm.value.email,
+           password: this.regForm.value.password,
+         })
+       );
     } else {
       this.store.dispatch(
         setErrorAction({

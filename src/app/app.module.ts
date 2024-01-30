@@ -32,6 +32,9 @@ import { errorReducer } from './share/store/reducers/error.reducer';
 import { ErrorComponent } from './error/error.component';
 import { MatIconModule } from '@angular/material/icon';
 import { CreatePostComponent } from './create-post/create-post.component';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from './share/store/effects/auth.effects';
+import { ChangePostComponent } from './change-post/change-post.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +49,7 @@ import { CreatePostComponent } from './create-post/create-post.component';
     AuthComponent,
     ErrorComponent,
     CreatePostComponent,
+    ChangePostComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,6 +65,7 @@ import { CreatePostComponent } from './create-post/create-post.component';
     MatFormFieldModule,
     MatButtonModule,
     MatIconModule,
+    EffectsModule.forRoot([AuthEffects]),
   ],
   providers: [
     provideClientHydration(),
