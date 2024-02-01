@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ThemeService } from '../services/theme.service';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription, of } from 'rxjs';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-layout',
@@ -9,14 +10,21 @@ import { Subscription } from 'rxjs';
 })
 export class LayoutComponent {
   theme: string = 'light';
+  isLoader: Observable<boolean> = of(false);
 
   private themeSubscription: Subscription;
-  constructor(private themeService: ThemeService) {
+  constructor(
+    private themeService: ThemeService,
+    private store: Store<{ loader: boolean }>
+  ) {
     this.themeSubscription = this.themeService.themeChanged$.subscribe(
       (newTheme) => {
         this.theme = newTheme;
       }
     );
+
+   this.isLoader = this.store.select((state) => state.loader);
+
   }
 
   ngOnDestroy() {

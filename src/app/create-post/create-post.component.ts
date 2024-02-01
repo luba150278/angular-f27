@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { PostService } from '../services/post.service';
 import { setErrorAction } from '../share/store/actions/error.action';
+import { startLoaderAction, stopLoaderAction } from '../share/store/actions/loader.action';
 
 @Component({
   selector: 'app-create-post',
@@ -36,7 +37,9 @@ export class CreatePostComponent {
   sumbitForm() {
     if (this.addPostForm.status === 'VALID') {
       const tagList = this.addPostForm.value.tagList.replaceAll(" ", '').split(',');
+      this.store.dispatch(startLoaderAction());
       this.postService.createPost({ ...this.addPostForm.value, tagList }).subscribe((data) => {
+         this.store.dispatch(stopLoaderAction());
          if ('article' in data) {
            this.isSuccess = 'Post added successfully';
          } else {

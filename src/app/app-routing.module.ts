@@ -6,7 +6,6 @@ import { PostComponent } from './post/post.component';
 import { ErrorPageComponent } from './404/404.component';
 import { AuthComponent } from './auth/auth.component';
 import { CreatePostComponent } from './create-post/create-post.component';
-import { ChangePostComponent } from './change-post/change-post.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -15,7 +14,6 @@ const routes: Routes = [
   { path: '404', component: ErrorPageComponent },
   { path: 'auth', component: AuthComponent },
   { path: 'create-post', component: CreatePostComponent },
-  { path: 'change-post/:slug', component: ChangePostComponent },
   {
     path: ':lang',
     children: [
@@ -25,7 +23,6 @@ const routes: Routes = [
       { path: '404', component: ErrorPageComponent },
       { path: 'auth', component: AuthComponent },
       { path: 'create-post', component: CreatePostComponent },
-      { path: 'change-post/:slug', component: ChangePostComponent },
     ],
   },
   { path: '**', redirectTo: '404' },

@@ -5,6 +5,13 @@ import {
 } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EffectsModule } from '@ngrx/effects';
+
 import { AppComponent } from './app.component';
 import { LayoutComponent } from './layout/layout.component';
 import { HeaderComponent } from './header/header.component';
@@ -14,27 +21,27 @@ import { PostsComponent } from './posts/posts.component';
 import { PostComponent } from './post/post.component';
 import { ErrorPageComponent } from './404/404.component';
 import { AuthComponent } from './auth/auth.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ErrorComponent } from './error/error.component';
+import { CreatePostComponent } from './create-post/create-post.component';
+
 import { ThemeService } from './services/theme.service';
 import { LangService } from './services/lang.service';
-import { HttpClientModule } from '@angular/common/http';
 import { PostService } from './services/post.service';
-import { StoreModule } from '@ngrx/store';
-import { authReduser } from './share/store/reducers/auth.reducer';
 import { AuthService } from './services/auth.service';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { authReduser } from './share/store/reducers/auth.reducer';
+import { errorReducer } from './share/store/reducers/error.reducer';
+
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
-import { errorReducer } from './share/store/reducers/error.reducer';
-import { ErrorComponent } from './error/error.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
-import { CreatePostComponent } from './create-post/create-post.component';
-import { EffectsModule } from '@ngrx/effects';
+
 import { AuthEffects } from './share/store/effects/auth.effects';
-import { ChangePostComponent } from './change-post/change-post.component';
+import { loaderReduser } from './share/store/reducers/loader.reducer';
+import { TagsComponent } from './tags/tags.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +56,7 @@ import { ChangePostComponent } from './change-post/change-post.component';
     AuthComponent,
     ErrorComponent,
     CreatePostComponent,
-    ChangePostComponent,
+    TagsComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,7 +64,11 @@ import { ChangePostComponent } from './change-post/change-post.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    StoreModule.forRoot({ auth: authReduser, error: errorReducer }),
+    StoreModule.forRoot({
+      auth: authReduser,
+      error: errorReducer,
+      loader: loaderReduser,
+    }),
     StoreDevtoolsModule.instrument(),
     BrowserAnimationsModule,
     MatTabsModule,
@@ -65,6 +76,7 @@ import { ChangePostComponent } from './change-post/change-post.component';
     MatFormFieldModule,
     MatButtonModule,
     MatIconModule,
+    MatProgressSpinnerModule,
     EffectsModule.forRoot([AuthEffects]),
   ],
   providers: [

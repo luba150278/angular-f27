@@ -37,3 +37,9 @@ export interface IPosts {
   articles: IPost[];
   articlesCount: number;
 }
+
+
+export interface IDeletePostResponse {
+  raw: string[];
+  affected: number;
+}
