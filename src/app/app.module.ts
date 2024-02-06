@@ -38,10 +38,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { AuthEffects } from './share/store/effects/auth.effects';
 import { loaderReduser } from './share/store/reducers/loader.reducer';
 import { TagsComponent } from './tags/tags.component';
+import { tagReduser } from './share/store/reducers/tag.reducer';
 
 @NgModule({
   declarations: [
@@ -68,6 +70,7 @@ import { TagsComponent } from './tags/tags.component';
       auth: authReduser,
       error: errorReducer,
       loader: loaderReduser,
+      tag: tagReduser
     }),
     StoreDevtoolsModule.instrument(),
     BrowserAnimationsModule,
@@ -77,6 +80,7 @@ import { TagsComponent } from './tags/tags.component';
     MatButtonModule,
     MatIconModule,
     MatProgressSpinnerModule,
+    MatPaginatorModule,
     EffectsModule.forRoot([AuthEffects]),
   ],
   providers: [

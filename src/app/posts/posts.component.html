@@ -18,7 +18,7 @@
               <mat-icon class="mat-icon-rtl-mirror" fontIcon="face"></mat-icon>
             </div>
 
-            <div class="icon d-flex" *ngIf="isFilter" (click)="cancelFilters()">
+            <div class="icon d-flex" *ngIf="isFilter" (click)="clearFilters()">
               <mat-icon
                 class="mat-icon-rtl-mirror"
                 fontIcon="cancel"
@@ -69,6 +69,15 @@
         </div>
         <app-tags></app-tags>
       </div>
+
+      <mat-paginator
+      (page)="handlePageEvent($event)"
+        [length]="total"
+        [pageSize]="pageSize"
+        [pageSizeOptions]="pageSizeOptions"
+        aria-label="Select page"
+      >
+      </mat-paginator>
     </div>
   </section>
 

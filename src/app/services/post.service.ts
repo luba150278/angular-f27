@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, catchError, of } from 'rxjs';
+import { Observable, catchError, map, of } from 'rxjs';
 import { IDeletePostResponse, IPostData, IPostResponse, IPosts } from '../share/post.interface';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { URL } from '../share/backend';
@@ -16,7 +16,7 @@ export class PostService {
   public posts: IPosts = { articles: [], articlesCount: 0 };
   public tags: string[] = [];
   constructor(private http: HttpClient, private store: Store) {
-    this.getPosts().subscribe((data) => {
+    this.getPosts(9, 0).subscribe((data) => {
       if ('articles' in data) {
         this.posts = data;
       } else {
@@ -29,7 +29,7 @@ export class PostService {
       }
     });
 
-    this.getTags().subscribe(data => {
+    this.getTags().subscribe((data) => {
       if ('tags' in data) {
         this.tags = data.tags;
       } else {
@@ -40,10 +40,10 @@ export class PostService {
           })
         );
       }
-    })
+    });
   }
-  getPosts(): Observable<IPosts | IError> {
-    const url = URL + '/articles';
+  getPosts(limit: number, offset: number): Observable<IPosts | IError> {
+    const url = URL + `/articles/?limit=${limit}&offset=${offset}`;
     return this.http.get<IPosts>(url).pipe(
       catchError((error: HttpErrorResponse) => {
         return of(error.error as IError);
@@ -60,8 +60,13 @@ export class PostService {
     );
   }
 
-  getPostsByAuthor(id: number): Observable<IPosts | IError> {
-    const url = URL + '/articles/?authorId=' + id;
+  getPostsByAuthor(
+    id: number,
+    limit: number,
+    offset: number
+  ): Observable<IPosts | IError> {
+    const url =
+      URL + `/articles/?authorId=${id}&limit=${limit}&offset=${offset}`;
     return this.http.get<IPosts>(url).pipe(
       catchError((error: HttpErrorResponse) => {
         return of(error.error as IError);
@@ -69,8 +74,8 @@ export class PostService {
     );
   }
 
-  getPostsByTag(tag: string): Observable<IPosts | IError> {
-    const url = URL + '/articles/?tag=' + tag;
+  getPostsByTag(tag: string, limit: number, offset: number): Observable<IPosts | IError> {
+    const url = URL + `/articles/?tag=${tag}&limit=${limit}&offset=${offset}`;
     return this.http.get<IPosts>(url).pipe(
       catchError((error: HttpErrorResponse) => {
         return of(error.error as IError);
